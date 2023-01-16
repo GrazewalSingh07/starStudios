@@ -1,0 +1,123 @@
+*{
+    margin:0;
+    padding:0;
+    font-size: 22px;
+    font-family:Kalam;
+
+}
+body{
+    background-color:rgb(229,245,254)
+}
+.main{
+    display: flex;
+    position: absolute;
+    width: 100%;
+    top:30%;
+    left:30%;
+    transform: translate(-30%,-30%);
+    
+}
+.main-left{
+    padding: 16px 16px 24px 16px;
+    width: 50%;
+    height: 50vh;
+    box-sizing: border-box;
+    /* border: 1px solid; */
+    text-align: right;
+    position: relative;
+    
+}
+.image{
+   
+    height: 100%;
+    
+    /* position: relative; */
+}
+
+.main-right{
+    padding: 16px;
+    width: 50%;
+    height: 50vh;
+    box-sizing: border-box;
+    /* border: 2px solid; */
+    align-items: left;
+}
+.main-right h1{
+    letter-spacing: 5px;
+    font-size: larger;
+}
+#option-parent{
+    padding-top: 34px;
+    width: 15vh;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.input-btn{
+    cursor: pointer;
+    width: 22px;
+    height:22px;
+    border: none;
+    border-radius: 50%;
+}
+.input-btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0 ,0,0,.2) ;
+}
+
+.input-btn:active{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 10px rgba(0 ,0,0,.2) ;
+}
+
+.text{
+    display: block;
+    font-size: large;
+    font-weight: 400;
+}
+.text-field{
+    display: block;
+    padding-top: 24px;
+}
+.upload-btn{
+    background-color: aqua;
+    margin-top: 24px;;
+    border: none;
+    padding: 16px 36px 16px 36px;
+}
+.upload-btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0 ,0,0,.2) ;
+}
+
+.upload-btn:active{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 10px rgba(0 ,0,0,.2) ;
+}
+.logo-preview{
+    /* height: 0px; */
+    height:60px;
+
+    position: absolute; 
+    top:75%;
+    right:25%;
+    /* border: 1px solid;   */
+    z-index: 999;
+}
+.loader{
+    position: absolute;
+    top:50%;
+    left:70%;
+    z-index: 999;
+   display: none;
+   animation: rotation 2s linear infinite;
+}
+@keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(360deg);
+    }
+  }

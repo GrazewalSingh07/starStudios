@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Umbrella</title>
+    <link rel="stylesheet" href="./index.css">
+    <link href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
+  
+</head>
+<body>
+   <div class="main">
+        <div id="main-left" class="main-left">
+            <img src="./Utilities/loader_icon.svg" id="loader" class="loader">
+            <img id="image" class="image" src="./Utilities/Blue umbrella.png" alt="umbrella">
+            <img src="" id="logo-preview" class="logo-preview">
+        </div >
+        <div class="main-right"> 
+             <h1>Custom Umbrella</h1>
+             <div id="option-parent">   
+            </div>
+            <h3 class="text-field">
+                <span>Customize your umbrella</span>
+                <span class="text">Upload a logo for an instant preview.</span>
+                <span class="text" >png and jpg files only. Max file size is 5MB</span>
+            </h3>
+            <button class="upload-btn" onclick="openInput()"> <span><img src="./Utilities//upload_icon.svg" alt="upload-button" ></span>UPLOAD LOGO</button>
+            <input  type="file" name="image" accept=".jpeg,.png" id="file-input" style="display:none" onchange="getFile(event)">
+        </div>
+   </div>
+</body>
+</html>
+<script>
+    const color=["pink", "yellow","blue"]
+
+const setColorOptions=()=>{
+    let parent= document.getElementById("option-parent")
+    for(let i =0;i<color.length;i++){
+        let option=document.createElement("button")
+
+        option.style.backgroundColor=color[i]
+        option.setAttribute("class","input-btn")
+        option.setAttribute("id",color[i])
+        option.addEventListener("click",()=>changeTheme(color[i]))
+        parent.appendChild(option)
+       
+     }
+    
+}
+
+function changeTheme(color){
+console.log(color)
+let image= document.getElementById("image")
+document.getElementById("loader").style.display="block"
+image.src=""
+setTimeout(()=>{
+    document.getElementById("loader").style.display="none"
+    if(color=="pink"){
+    image.src="./Utilities/Pink umbrella.png"
+    }else if(color=="blue"){
+        image.src="./Utilities/Blue umbrella.png"
+    }else{
+        image.src="./Utilities/Yello umbrella.png"
+    }
+},1000)
+
+
+}
+setColorOptions()
+function getFile(event){
+    var urlCreator = window.URL || window.webkitURL;
+    let objectURL = urlCreator.createObjectURL(event.target.files[0]);
+ 
+let logoPreview= document.getElementById("logo-preview")
+logoPreview.src=objectURL
+ 
+// document.getElementById("main-left").append(logoPreview) 
+}
+function openInput(){
+
+    let input=document.getElementById("file-input")
+    input.click()
+}
+</script>
