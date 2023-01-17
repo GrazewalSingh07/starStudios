@@ -13,11 +13,12 @@
    <div class="main">
         <div id="main-left" class="main-left">
             <img src="./Utilities/loader_icon.svg" id="loader" class="loader">
-            <img id="image" class="image" src="./Utilities/Blue umbrella.png" alt="umbrella">
+            <img id="image" class="image" src="./Utilities/Blue umbrella.png" alt="">
             <img src="" id="logo-preview" class="logo-preview">
+            <h2 id="color-name">Umbrella preview in Blue</h2>
         </div >
         <div class="main-right"> 
-             <h1>Custom Umbrella</h1>
+             <h1>Custom Umbrella blue</h1>
              <div id="option-parent">   
             </div>
             <h3 class="text-field">
@@ -25,7 +26,9 @@
                 <span class="text">Upload a logo for an instant preview.</span>
                 <span class="text" >png and jpg files only. Max file size is 5MB</span>
             </h3>
-            <button class="upload-btn" onclick="openInput()"> <span><img src="./Utilities//upload_icon.svg" alt="upload-button" ></span>UPLOAD LOGO</button>
+            <button class="upload-btn" onclick="openInput(event)">
+            <span class="uploadLogo">Upload Logo</span> <span id="buttonText" style="color:white ">Upload Logo</span> <span onclick="removeLogo(event)" class="removeLogo">X</span></button>
+
             <input  type="file" name="image" accept=".jpeg,.png" id="file-input" style="display:none" onchange="getFile(event)">
         </div>
    </div>
@@ -44,24 +47,32 @@ const setColorOptions=()=>{
         option.setAttribute("id",color[i])
         option.addEventListener("click",()=>changeTheme(color[i]))
         parent.appendChild(option)
-       
      }
-    
 }
 
 function changeTheme(color){
-console.log(color)
-let image= document.getElementById("image")
-document.getElementById("loader").style.display="block"
-image.src=""
-setTimeout(()=>{
+    console.log(color)
+    let image= document.getElementById("image")
+    document.getElementById("loader").style.display="block"
+    image.src=""
+    // document.style.body.backgroundColor=color
+
+    setTimeout(()=>{
+
     document.getElementById("loader").style.display="none"
     if(color=="pink"){
-    image.src="./Utilities/Pink umbrella.png"
+        image.src="./Utilities/Pink umbrella.png"
+
+        document.body.style.backgroundColor ="#FFB6C1";
+        document.getElementById("color-name").textContent="Customised Umbrella in pink"
     }else if(color=="blue"){
         image.src="./Utilities/Blue umbrella.png"
+        document.body.style.backgroundColor ="rgb(229,245,254)";
+        document.getElementById("color-name").textContent="Customised Umbrella in blue"
     }else{
         image.src="./Utilities/Yello umbrella.png"
+        document.body.style.backgroundColor ="#FFFFCC";
+        document.getElementById("color-name").textContent=`Customised Umbrella in ${color}`
     }
 },1000)
 
@@ -72,14 +83,22 @@ function getFile(event){
     var urlCreator = window.URL || window.webkitURL;
     let objectURL = urlCreator.createObjectURL(event.target.files[0]);
  
-let logoPreview= document.getElementById("logo-preview")
-logoPreview.src=objectURL
+    let logoPreview= document.getElementById("logo-preview")
+    logoPreview.src=objectURL
+    document.getElementById("buttonText").textContent=event.target.files[0].name
  
 // document.getElementById("main-left").append(logoPreview) 
 }
-function openInput(){
-
+function openInput(event){
+    event. stopPropagation()
     let input=document.getElementById("file-input")
     input.click()
 }
+function removeLogo(event){
+  
+    event. stopPropagation()
+    document.getElementById("buttonText").textContent="Upload Logo"
+    document.getElementById("logo-preview").src=''
+}
+
 </script>
